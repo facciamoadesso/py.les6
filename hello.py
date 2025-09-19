@@ -1,4 +1,4 @@
-password = input("Введите пароль: ")
+CHECKS = []
 
 
 def has_digit(password):
@@ -23,10 +23,25 @@ def has_lower_letters(password):
     
 def has_symbols(password):
     return any(not symbol.isalnum() for symbol in password)
-    
-    
-checks = [has_digit, is_very_long, has_letters, has_upper_letters, has_lower_letters, has_symbols]
-    
-score = sum(2 for check in checks if check(password))
-        
-print("Рейтинг пароля: ", score)
+
+
+def rating(password):
+    return sum(2 for check in CHECKS if check(password))
+
+
+def main():
+    password = input("Введите пароль: ")
+    score = rating(password)
+    print("Рейтинг пароля: ", score)    
+
+
+if __name__ == "__main__":
+    CHECKS = [
+        has_digit, 
+        is_very_long, 
+        has_letters, 
+        has_upper_letters, 
+        has_lower_letters, 
+        has_symbols
+    ]
+    main()
