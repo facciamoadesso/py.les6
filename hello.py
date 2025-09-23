@@ -1,6 +1,3 @@
-CHECKS = []
-
-
 def has_digit(password):
     return any(symbol.isdigit() for symbol in password)
     
@@ -26,17 +23,7 @@ def has_symbols(password):
 
 
 def rating(password):
-    return sum(2 for check in CHECKS if check(password))
-
-
-def main():
-    password = input("Введите пароль: ")
-    score = rating(password)
-    print("Рейтинг пароля: ", score)    
-
-
-if __name__ == "__main__":
-    CHECKS = [
+    checks = [
         has_digit, 
         is_very_long, 
         has_letters, 
@@ -44,4 +31,15 @@ if __name__ == "__main__":
         has_lower_letters, 
         has_symbols
     ]
+    return sum(2 for check in CHECKS if check(password))
+    
+    
+def main():
+    password = input("Введите пароль: ")
+    score = rating(password)
+    print("Рейтинг пароля: ", score)    
+
+
+if __name__ == "__main__":
     main()
+
